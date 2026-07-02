@@ -1,0 +1,26 @@
+# --- Elixir / BEAM ---
+swarm/_build/
+swarm/deps/
+swarm/*.ez
+swarm/swarm-*.tar
+swarm/erl_crash.dump
+*.beam
+
+# --- Python ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# --- mise ---
+# mise.toml is COMMITTED (it's the pinned toolchain). Only local overrides ignored:
+.mise.local.toml
+mise.local.toml
+
+# --- IDE / OS ---
+.idea/
+.DS_Store
+
+# --- Claude Code local settings (machine-specific) ---
+.claude/settings.local.json
