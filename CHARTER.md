@@ -88,6 +88,53 @@ and is fully embedded by self-tuning (`h=0` still locks perfectly).
 cannot see.** That is where the constitutional design effort goes, and it is
 exactly the part a Python loop cannot model but the BEAM can.
 
+## The relational finding (2026-07-03, from `thrml-kuramoto-lab`)
+
+The two references above assume intent is a *direction* — a target everyone
+should point at — so the homeostatic reference is consensus: the local order
+parameter, "do my neighbors and I agree?" The clamped-PGM lab tested what
+happens when intent is instead a *structure*: store an arbitrary pattern in
+the couplings themselves (Hopfield, `J_ij = t_i·t_j` — edges that should
+agree stay attractive, edges that should differ become repulsive, and the
+pattern becomes a valley of the energy landscape). Sparse carriers clamping
+fragments of the pattern then trigger associative recall: the mesh
+*remembers* the rest. Three results (scale-free, calibrated just above the
+ordering transition, `dtm_col_infl_clamping.py` H5):
+
+1. **Recall percolates like alignment does.** Fidelity rises with carrier
+   fraction; hub placement beats random. The design rules transfer from
+   uniform to structured intent.
+2. **Consensus-coherence is blind to structured order.** At 94% recall, the
+   magnetization-style monitor reads ≈ 0. A mesh can be in immaculate service
+   of a structured telos while every consensus check says "disordered." This
+   is the inverse of the h=0 trap: there, coherence without fidelity; here,
+   fidelity invisible to coherence.
+3. **Agreement-satisfaction sees what consensus cannot.** The monitor
+   `r_struct` — the fraction of each node's own couplings currently honored,
+   `sign(J_ij)·s_i·s_j` averaged over edges — tracks fidelity almost exactly
+   (0.90/0.91, 0.94/0.95) and is locally computable: each node needs only its
+   own covenants, no global reference.
+
+**The finding:** when the telos lives in the relationships rather than being
+broadcast from a center, the honest homeostatic signal is *are my agreements
+with my neighbors being honored* — covenant-satisfaction, not sameness.
+Sovereign nodes holding heterogeneous agreements that phase-lock into a
+coherence no consensus metric can see: that is the telos of this whole
+project, measured.
+
+**The flag, per the honest-failure commitment above:** this does not repeal
+the rule that the coherence metric must never reference the target — it
+relocates the tension. `r_struct` is target-blind at the node (each node
+reads only its own edge signs), but those edge signs were *written by* the
+intent. The monitor is honest exactly insofar as the covenants are. Corrupt
+the couplings and covenant-satisfaction goes green while the mesh recalls
+the wrong pattern — the hub-capture takeover result, one level up. So the
+defense budget moves with the intent: from hub capture-resistance to
+**covenant integrity** — who may rewrite the agreements, and how a node
+detects that its own wiring has been quietly edited. That is a
+constitutional question, not a physics question, which is why it belongs
+here.
+
 ## Why BEAM, and the three experiments that justify the port
 
 The port is not a rewrite for its own sake. The oracle's three fixed assumptions
