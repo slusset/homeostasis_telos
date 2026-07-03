@@ -195,10 +195,15 @@ degrees can be walked out of it by degrees. The defense is not coarseness
 (that buys brittleness), but the pairings already on the books — covenant
 integrity, hub capture-resistance — now joined by a granularity choice made
 *deliberately*, per mesh, as a constitutional parameter rather than an
-accident of implementation. Conjecture, open and unmeasured: richer
-per-edge agreements (full q×q covenants) may also raise the capacity wall
-(~q² in dense theory) — granularity buying freedom to move *and* freedom to
-hold multiplicity at once. Measure before believing.
+accident of implementation. The conjecture that richer per-edge agreements
+(full q×q covenants) also raise the capacity wall was **measured same day
+(H8b)**: confirmed in direction — the wall recedes ~5× at q=4 (matching
+dense theory's q(q−1)/2 almost exactly) and ~8–14× at q=8 (undershooting
+the quadratic law; on a sparse web the substrate still owns part of the
+wall). So granularity buys freedom to move *and* freedom to hold
+multiplicity, and both arrive together as members' state space passes
+~4–8 distinguishable positions. The exponent awaits finite-size scaling;
+the direction is no longer conjecture.
 
 ## Why BEAM, and the three experiments that justify the port
 
