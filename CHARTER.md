@@ -135,6 +135,31 @@ detects that its own wiring has been quietly edited. That is a
 constitutional question, not a physics question, which is why it belongs
 here.
 
+**The boundary (same lab, multi-pattern H6b):** covenant-satisfaction is a
+fidelity proxy only **below capacity**. Superpose several intents in the
+same couplings (Hebb, `J_ij = Σ_μ t^μ_i·t^μ_j`) and the wall is immediate on
+a sparse mesh — operating capacity ≈ 0.14 stored intents per neighbor, so a
+⟨k⟩≈6 mesh holds one, charitably two. Past it, the mesh does not defect to a
+rival memory; it fragments into a **mixture state** — locally coherent
+shards of several intents stitched into a glassy compromise that satisfies
+*more* couplings than perfect recall of any one intent would (r_struct 0.36
+observed vs 0.23 ceiling at P=12, while cued fidelity falls to 0.27). Below
+capacity the covenant monitor tracks fidelity; at overload it **rewards the
+drift** — the mesh looks increasingly well-covenanted precisely as it loses
+the plot. The saving nuance: overload is locally detectable *before any
+recall is attempted* — interference is visible in the wiring itself
+(cancelled edges, contested weights). Structural self-knowledge survives
+overload; teleological self-knowledge does not.
+
+The enforceable rule that follows: **a covenant budget, proportional to
+connection density.** A mesh must refuse new stored intents beyond
+~0.14·⟨k⟩ — or densify its covenant web first — because past that line no
+internal monitor can certify whose purpose is being served, and the failure
+arrives wearing the monitor's approval. The budget check is structural and
+local (count your conflicts), so it can be constitutional; the thing it
+protects — knowing which telos you serve — cannot be recovered by any
+after-the-fact audit from inside.
+
 ## Why BEAM, and the three experiments that justify the port
 
 The port is not a rewrite for its own sake. The oracle's three fixed assumptions
