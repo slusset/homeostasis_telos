@@ -160,6 +160,46 @@ local (count your conflicts), so it can be constitutional; the thing it
 protects — knowing which telos you serve — cannot be recovered by any
 after-the-fact audit from inside.
 
+## The granularity finding (same lab, the clock dial)
+
+Sweep the members' state space from binary spins to near-continuous phases
+(q-state clock, q = 2 → 16, each q calibrated to its own ordering point) and
+the two economies of intent separate:
+
+- **Coverage is granularity-invariant.** In equilibrium, the placement gap
+  does not move with q: getting intent *to* everyone is a covering problem
+  however expressive the states. Hubs win, always.
+- **Re-steering is granularity-priced.** In the metastable-flip protocol the
+  random-placement escape threshold collapses six-fold in a *step* between
+  q=4 and q=8 (0.12 → 0.02). Coarse phases must **nucleate** — leap the
+  whole barrier at once, unclamped hubs anchoring the old order, placement
+  worth 6× leverage. Fine phases **rotate** — the barrier fragments into
+  near-free intermediate steps, the trap dissolves, and placement leverage
+  compresses to 2×. This is the mechanism behind the substrate gap:
+  Kuramoto redirected at h ≈ 0.03 where binary Gibbs demanded 0.16, because
+  continuous phases can meet halfway and binary ones can only jump.
+
+**The constitutional reading: the price of the one-way door is set by how
+finely members can disagree.** A collective of binary commitments is
+structurally frozen — leaving an established consensus requires a
+coordinated leap, and whoever seats the carriers holds the leverage.
+Members who can occupy graded, intermediate positions can always rotate out
+of an old consensus by small mutual concessions. "Full lock is the brittle,
+frozen mode" now has a microscopic form: a binary state-space is full lock
+built into the substrate.
+
+**The flag, as always:** the same softness serves both masters. Fine
+granularity is redirectability when the telos moves and capturability when
+an adversary pulls — a mesh that can be talked out of its consensus by
+degrees can be walked out of it by degrees. The defense is not coarseness
+(that buys brittleness), but the pairings already on the books — covenant
+integrity, hub capture-resistance — now joined by a granularity choice made
+*deliberately*, per mesh, as a constitutional parameter rather than an
+accident of implementation. Conjecture, open and unmeasured: richer
+per-edge agreements (full q×q covenants) may also raise the capacity wall
+(~q² in dense theory) — granularity buying freedom to move *and* freedom to
+hold multiplicity at once. Measure before believing.
+
 ## Why BEAM, and the three experiments that justify the port
 
 The port is not a rewrite for its own sake. The oracle's three fixed assumptions
