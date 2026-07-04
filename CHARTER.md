@@ -202,14 +202,23 @@ dense theory's q(q−1)/2 almost exactly) and ~8–14× at q=8 (undershooting
 the quadratic law; on a sparse web the substrate still owns part of the
 wall). So granularity buys freedom to move *and* freedom to hold
 multiplicity, and both arrive together as members' state space passes
-~4–8 distinguishable positions. Finite-size scaling (N = 196→800, fixed
-density) settled the exponent: the knee does not rise with system size —
-the quadratic law is a dense-web privilege, and on a sparse web capacity
-grows only ~linearly in covenant richness. **Covenant richness and web
-density are complements, not substitutes**: richness without density
-saturates, because capacity is bought by many relationships averaging away
-interference between held intents, and no single relationship — however
-expressive — can do that averaging alone.
+~4–8 distinguishable positions.
+
+The scaling runs then earned their keep by killing our first mechanism
+story (finite size: N = 196→800; density: ⟨k⟩ = 6→42). What holds, cleanly:
+**capacity = α(q) · density** — a strict per-relationship law across a 7×
+density range; density and richness multiply, neither substitutes. What
+died: "richness needs density to average away interference." The richness
+coefficient α is *below* its dense-theory value by the same ~35% at q=8
+regardless of density or size (while q=4 sits exactly on theory) — a
+shortfall that averaging-starvation cannot explain. The live suspect is
+finite-temperature entropy: every measurement sits at the steerable
+operating point, where a richer state space has more thermal escape
+channels — the *same* fluctuation freedom that dissolves traps and buys
+redirectability taxes storage. If a cold-mesh sweep confirms it, the
+granularity finding closes on a true tension: **freedom to move and
+discipline to hold are one budget, spent at one temperature** — a mesh
+chooses its point on that line; it does not get both ends.
 
 ## Why BEAM, and the three experiments that justify the port
 
