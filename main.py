@@ -72,7 +72,7 @@ def run(h, N=120, horizon=6, steps=1400, perturb_at=700,
     for t in range(steps):
         # ---- NOVEL PERTURBATION: the purpose moves. Seed never saw this. ----
         if t == perturb_at:
-            true_target = 1.9    # ~109 deg shift in "what this is for"
+            true_target = 0.5    # ~109 deg shift in "what this is for"
 
         r, psi = local_order(theta, neighbors)
 
@@ -136,3 +136,5 @@ if __name__ == "__main__":
         if prev is not None and prev < 0.6 <= ts:
             print(f"  -> teleological fidelity crosses 0.6 near h = {h:.3f}")
         prev = ts
+    if prev is not None and prev > 0.6:
+        print("  -> no crossing: fidelity ≥ 0.6 at h=0 (drift 0.5 rad too small to discriminate frozen from tracking; frozen baseline = cos(drift) = 0.875)")
