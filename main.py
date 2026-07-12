@@ -29,7 +29,6 @@ one-way door. We look for the critical h where the gap collapses.
 import numpy as np
 
 TAU = 2 * np.pi
-rng = np.random.default_rng(7)
 
 def wrap(x):
     return (x + np.pi) % TAU - np.pi
@@ -44,7 +43,7 @@ def local_order(theta, neighbors):
     return r, psi
 
 def run(h, N=120, horizon=6, steps=1400, perturb_at=700,
-        r_lo=0.55, r_hi=0.80, dt=0.05, noise=0.015, seed=7):
+        r_lo=0.55, r_hi=0.80, dt=0.05, noise=0.015, seed=7, drift=1.9):
     """
     h : holographic depth in [0,1] -- fraction of nodes that carry a
         locally-reconstructable intent invariant. The honest knob.
@@ -72,7 +71,7 @@ def run(h, N=120, horizon=6, steps=1400, perturb_at=700,
     for t in range(steps):
         # ---- NOVEL PERTURBATION: the purpose moves. Seed never saw this. ----
         if t == perturb_at:
-            true_target = 1.9    # ~109 deg shift in "what this is for"
+            true_target = drift  # ~109 deg shift in "what this is for"
 
         r, psi = local_order(theta, neighbors)
 
@@ -109,32 +108,52 @@ def run(h, N=120, horizon=6, steps=1400, perturb_at=700,
 
     return np.array(hom_series), np.array(tel_series), perturb_at
 
-def summarize(h, window=150):
-    hom, tel, p = run(h)
+def summarize(h, window=150, drift=1.9):
+    hom, tel, p = run(h, drift=drift)
     # post-perturbation steady state
     hom_ss = hom[-window:].mean()
     tel_ss = tel[-window:].mean()
-    return hom_ss, tel_ss, hom_ss - tel_ss
+    # skill: 0 = no better than a frozen swarm (raw score cos(drift)), 1 = tracked.
+    # Drift-invariant, so thresholds on it mean the same thing at any drift angle.
+    baseline = np.cos(drift)
+    if np.isclose(baseline, 1.0):  # drift ~ 0 (mod 2*pi): nothing to track, skill undefined
+        skill = np.nan
+    else:
+        skill = (tel_ss - baseline) / (1 - baseline)
+    return hom_ss, tel_ss, hom_ss - tel_ss, skill
 
 if __name__ == "__main__":
-    print(f"{'h':>5} {'homeostatic':>12} {'teleological':>13} {'GAP':>8}   regime")
-    print("-"*60)
-    rows = []
+    DRIFT = 1.9  # radians the purpose moves at the perturbation
+    baseline = np.cos(DRIFT)
+    print(f"drift = {DRIFT:.2f} rad; frozen-swarm raw baseline cos(drift) = {baseline:.3f}")
+    print(f"{'h':>5} {'homeostatic':>12} {'teleological':>13} {'GAP':>8} {'skill':>7}   regime")
+    print("-"*70)
     for h in [0.0, 0.05, 0.10, 0.15, 0.20, 0.30, 0.50, 0.80, 1.0]:
-        hs, ts, gap = summarize(h)
-        rows.append((h, hs, ts, gap))
-        regime = ("FROZEN: locked, off-target" if gap > 0.5 else
-                  "EDGE: self-corrects" if ts > 0.6 else
+        hs, ts, gap, skill = summarize(h, drift=DRIFT)
+        # regimes keyed on skill (drift-invariant), not raw score or gap
+        regime = ("FROZEN: locked, off-target" if skill < 0.2 else
+                  "EDGE: self-corrects" if skill > 0.8 else
                   "transitional")
-        print(f"{h:>5.2f} {hs:>12.3f} {ts:>13.3f} {gap:>8.3f}   {regime}")
+        print(f"{h:>5.2f} {hs:>12.3f} {ts:>13.3f} {gap:>8.3f} {skill:>7.3f}   {regime}")
 
-    # find critical h where teleological fidelity crosses 0.6
+    # find critical h where tracking skill crosses 0.5 (drift-invariant threshold)
     print("\nCritical-threshold scan (where does intent survive perturbation?):")
     prev = None
+    crossed = False
     for h in np.linspace(0, 0.5, 26):
-        _, ts, _ = summarize(h)
-        if prev is not None and prev < 0.6 <= ts:
-            print(f"  -> teleological fidelity crosses 0.6 near h = {h:.3f}")
-        prev = ts
-    if prev is not None and prev > 0.6:
-        print("  -> no crossing: fidelity ≥ 0.6 at h=0 (drift 0.5 rad too small to discriminate frozen from tracking; frozen baseline = cos(drift) = 0.875)")
+        _, _, _, skill = summarize(h, drift=DRIFT)
+        if prev is not None and prev < 0.5 <= skill:
+            print(f"  -> tracking skill crosses 0.5 near h = {h:.3f}")
+            crossed = True
+        prev = skill
+    # No silent outcomes: report both no-crossing cases explicitly (charter:
+    # silent truncation reads as full coverage).
+    if not crossed:
+        if prev is not None and prev >= 0.5:
+            print(f"  -> no crossing: skill >= 0.5 already at h = 0. A frozen swarm "
+                  f"scores 0 by construction, so this suggests a rigged or trivial "
+                  f"setup (drift = {DRIFT:.2f} rad, baseline = {baseline:.3f}).")
+        else:
+            print(f"  -> no crossing: skill stays < 0.5 through h = 0.5. Intent does "
+                  f"not survive this perturbation at any scanned depth "
+                  f"(drift = {DRIFT:.2f} rad, baseline = {baseline:.3f}).")
